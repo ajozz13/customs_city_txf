@@ -702,6 +702,17 @@ func LoadItem(record *ibc.Hawb, itms *[]Item) {
 			LoadFrom: "consignee",
 		})
 
+		// if record.Goods[i].ManufacturerId != "" {
+		// 	it.Parties = append(it.Parties, ABIEntity{
+		// 		Type:    "manufacturer",
+		// 		MID:     record.Goods[i].ManufacturerId,
+		// 		Name:    record.Goods[i].ManufacturerId,
+		// 		Address: record.Goods[i].ManufacturerId,
+		// 		Country: record.Goods[i].ManufacturerId[0:2],
+		// 		City:    record.Goods[i].ManufacturerId,
+		// 	})
+		// }
+
 		*itms = append(*itms, it)
 	}
 }
