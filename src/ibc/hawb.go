@@ -144,7 +144,7 @@ func (e *Hawb) Load(rc []string) error {
 	e.Comments = rc[50]
 	e.GoodsOrigin = strings.TrimSpace(rc[51])
 
-	fmt.Println(len(rc))
+	// fmt.Println("total input size: ", len(rc))
 
 	if len(rc) > 52 {
 		e.IncomingContainer = rc[52]

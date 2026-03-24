@@ -113,7 +113,7 @@ func clean(fn string) error {
 }
 
 func ProcessManifestFile(inputf string, is_express bool) error {
-	fmt.Println("read input file: ", inputf)
+	// fmt.Println("read input file: ", inputf)
 	file, err := os.Open(inputf)
 	if err != nil {
 		log.Fatal(err)
@@ -145,8 +145,8 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 		}
 
 		switch record[0] {
-		case "email":
-			fmt.Println("ignore email")
+		// case "email":
+		// 	fmt.Println("ignore email")
 		case "mawb":
 			mwb = ibc.Manifest{}
 			if err := mwb.Load(record); err != nil {
@@ -177,8 +177,8 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 			// }
 			if last_ln < total_lines {
 				last_ln = total_lines
-				fmt.Println("CALL DO OUTPUT NOW\n", "#", total_lines)
-				fmt.Printf("with total goods %d\n", len(bll.Goods))
+				// fmt.Println("CALL DO OUTPUT NOW\n", "#", total_lines)
+				// fmt.Printf("with total goods %d\n", len(bll.Goods))
 				// err := bll.Write(of, mwb)
 				// if err != nil {
 				// log.Printf("issue writing ln: %d track: %s cause: %+v", last_ln, bll.House, err)
@@ -198,7 +198,7 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 			if err := bll.Load(record); err != nil {
 				fmt.Println(err)
 			}
-			fmt.Println("loaded", bll.RecordType, bll.House)
+			// fmt.Println("loaded", bll.RecordType, bll.House)
 			total_lines = total_lines + 1
 
 		case "good", "goods", "commodity":
@@ -206,7 +206,7 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 			if err := gd.Load(record); err != nil {
 				fmt.Println(err)
 			}
-			fmt.Println("process ", gd.RecordType)
+			// fmt.Println("process ", gd.RecordType)
 			bll.AddGood(gd)
 
 		default:
@@ -216,7 +216,7 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 	}
 	fmt.Println(last_ln, total_lines)
 	if last_ln < total_lines {
-		fmt.Println("CALL DO OUTPUT NOW\n", "#", last_ln+1)
+		// fmt.Println("CALL DO OUTPUT NOW\n", "#", last_ln+1)
 		// err := bll.Write(of, mwb)
 		// if err != nil {
 		// fmt.Println(err)
@@ -231,7 +231,7 @@ func ProcessManifestFile(inputf string, is_express bool) error {
 	service.Info()
 
 	dbg := true
-	auto_submit := false
+	auto_submit := true
 
 	err = service.ProcessManifest(obdy, auto_submit, dbg)
 	if err != nil {
@@ -248,7 +248,7 @@ func main() {
 	//
 	//ONLIVE MODE TURN ON auto_submit above
 
-	fmt.Println(len(os.Args))
+	// fmt.Println(len(os.Args))
 	if len(os.Args) != 3 {
 		log.Fatalf("usage: cmd path_to_input_file is_express")
 	}
