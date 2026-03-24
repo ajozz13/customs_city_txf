@@ -227,7 +227,7 @@ func BuildManifest(out *[]ABIManifest, mn ibc.Manifest, hwb *ibc.Hawb) {
 	man.Bill.Master = mn.Mawb
 	man.Bill.Type = "M"
 	// when PGA
-	man.Bill.Group = "N"
+	man.Bill.Group = "Y"
 
 	var inv Invoice
 	location = stationToLocation(mn.Destination, false)
