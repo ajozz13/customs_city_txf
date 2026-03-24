@@ -596,7 +596,10 @@ func LoadItem(record *ibc.Hawb, itms *[]Item) {
 			}
 		}
 
-		it.Weight.UOM = record.WeightUnit[0:1]
+		it.Weight.UOM = strings.ToUpper(record.WeightUnit[0:1])
+		if it.Weight.UOM == "P" {
+			it.Weight.UOM = "L"
+		}
 		it.Weight.Gross = record.Weight
 		it.Parties = append(it.Parties, ABIEntity{
 			Type:       "seller",
@@ -664,6 +667,10 @@ func LoadItem(record *ibc.Hawb, itms *[]Item) {
 		} else {
 			it.Weight.UOM = record.WeightUnit[0:1]
 		}
+		if it.Weight.UOM == "P" {
+			it.Weight.UOM = "L"
+		}
+
 		if record.Goods[i].ItemWeight != "" {
 			it.Weight.Gross = record.Goods[i].ItemWeight
 		} else {
